@@ -8,6 +8,14 @@ Meteor.methods({
       url: String
     });
 
+    if (Meteor.isServer) {
+      postAttributes.title += "(服务器)";
+      // wait for 5 seconds
+      Meteor._sleepForMs(5000);
+    } else {
+      postAttributes.title += "(客户端)";
+    }
+
     var postWithSameLink = Posts.findOne({url: postAttributes.url});
     if (postWithSameLink) {
       return {
