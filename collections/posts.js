@@ -15,9 +15,9 @@ Posts.allow({
 });
 
 Posts.deny({
-  update: function(userId, post, fieldNames) {
-    // 只能更改如下两个字段：
-    return (_.without(fieldNames, 'url', 'title').length > 0);
+  update: function(userId, post, fieldNames, modifier) {
+    var errors = validatePost(modifier.$set);
+    return errors.title || errors.url;
   }
 });
 
