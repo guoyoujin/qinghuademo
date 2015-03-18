@@ -15,9 +15,8 @@ Template.postItem.helpers({
       return 'disabled';
     }
   }
-
-  
 });
+
 
 Template.postItem.events({
   'click .upvotable': function(e) {
